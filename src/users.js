@@ -31,13 +31,14 @@ export async function addNewUser(req, res) {
 }
 
 export async function updateUser(req, res) {
-  const token = req.headers.authorization
-  const decodedToken = jwt.verify(token, secretKey)
+  // const token = req.headers.authorization - Now we checking it in middleware
+  // const decodedToken = jwt.verify(token, secretKey)
   const { uid } = req.params // profile they want to update
-  if(uid !== decodedToken.uid) {
-    res.status(401).send({ message: 'Invalid token ID' })
-    return
-  }
+  //const { uid } = req.decoded - if we change the rules ,wont work
+  // if(uid !== decodedToken.uid) {
+  //   res.status(401).send({ message: 'Invalid token ID' })
+  //   return
+  // }
   const db = dbConnect()
   await db.collection('users').doc(uid).update(req.body)
   res.status(202).send({ message: 'updated'})
