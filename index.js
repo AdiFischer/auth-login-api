@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors"
-import { userLogin, addNewUser, updateUser} from "./src/users.js";
+import { userLogin, addNewUser, updateUser } from "./src/users.js";
 import { isUserReallyUser } from "./src/middleware.js";
 
 

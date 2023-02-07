@@ -9,8 +9,8 @@ export async function userLogin(req, res) {
     .where('email', '==', email.toLowerCase())
     .where('password', '==', password)
     .get()
-  const users = matchingUsers.docs.map(doc => ({...doc.data(), uid: doc.id }))
-  if(!users.length) {
+  const users = matchingUsers.docs.map(doc => ({ ...doc.data(), uid: doc.id }))
+  if (!users.length) {
     res.status(401).send({ message: 'Invalid email or password' })
     return
   }
@@ -41,5 +41,5 @@ export async function updateUser(req, res) {
   // }
   const db = dbConnect()
   await db.collection('users').doc(uid).update(req.body)
-  res.status(202).send({ message: 'updated'})
+  res.status(202).send({ message: 'updated' })
 }
